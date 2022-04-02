@@ -1,0 +1,71 @@
+*  Generated for: PrimeSim
+*  Design library name: extra
+*  Design cell name: ckt_tb
+*  Design view name: schematic
+.lib 'saed32nm.lib' TT
+
+*Custom Compiler Version S-2021.09
+*Tue Mar  1 05:28:25 2022
+
+.global gnd!
+********************************************************************************
+* Library          : extra
+* Cell             : ckt
+* View             : schematic
+* View Search List : hspice hspiceD schematic spice veriloga
+* View Stop List   : hspice hspiceD
+********************************************************************************
+.subckt ckt d en gnd_1 out vcc
+xm8 net35 en gnd_1 net36 n25 w=0.36u l=0.26u nf=1 m=1
+xm7 d en out net30 n25 w=0.36u l=0.26u nf=1 m=1
+xm2 net15 net35 out net10 n25 w=0.36u l=0.26u nf=1 m=1
+xm1 net40 out gnd_1 net6 n25 w=0.36u l=0.26u nf=1 m=1
+xm0 net15 net40 gnd_1 net2 n25 w=0.36u l=0.26u nf=1 m=1
+xm9 net35 en vcc net34 p25 w=0.36u l=0.26u nf=1 m=1
+xm6 d net35 out net26 p25 w=0.36u l=0.26u nf=1 m=1
+xm5 net15 en out net22 p25 w=0.36u l=0.26u nf=1 m=1
+xm4 net40 out vcc net18 p25 w=0.36u l=0.26u nf=1 m=1
+xm3 net15 net40 vcc net14 p25 w=0.36u l=0.26u nf=1 m=1
+.ends ckt
+
+********************************************************************************
+* Library          : extra
+* Cell             : ckt_tb
+* View             : schematic
+* View Search List : hspice hspiceD schematic spice veriloga
+* View Stop List   : hspice hspiceD
+********************************************************************************
+xi0 d_in en gnd! op net6 ckt
+v1 net6 gnd! dc=1.8
+v7 en gnd! dc=0 pulse ( 0 1.8 0 0.01u 0.01u 10u 20u )
+v6 d_in gnd! dc=0 pulse ( 1.8 0 0 0.01u 0.01u 6u 12u )
+c5 op gnd! c=1p
+
+
+
+
+
+
+
+
+.tran '0.1u' '40u' name=tran
+
+.option primesim_remove_probe_prefix = 0
+.probe v(*) i(*) level=1
+.probe tran v(d_in) v(en) v(op)
+
+.temp 25
+
+
+
+.option primesim_output=wdf
+
+
+.option parhier = LOCAL
+
+
+
+
+
+
+.end

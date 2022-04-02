@@ -1,0 +1,91 @@
+*  Generated for: PrimeSim
+*  Design library name: ring_osc
+*  Design cell name: ckt_tb
+*  Design view name: schematic
+.lib 'saed32nm.lib' TT
+
+*Custom Compiler Version S-2021.09
+*Tue Mar  1 12:29:49 2022
+
+.global gnd!
+********************************************************************************
+* Library          : ring_osc
+* Cell             : ckt
+* View             : schematic
+* View Search List : hspice hspiceD schematic spice veriloga
+* View Stop List   : hspice hspiceD
+********************************************************************************
+.subckt ckt d en gnd_1 out vcc
+xm22 out net97 gnd_1 net91 n25 w=0.36u l=0.26u nf=1 m=1
+xm20 net97 net87 gnd_1 net85 n25 w=0.36u l=0.26u nf=1 m=1
+xm18 net87 net81 gnd_1 net79 n25 w=0.36u l=0.26u nf=1 m=1
+xm16 net81 net75 gnd_1 net73 n25 w=0.36u l=0.26u nf=1 m=1
+xm14 net75 net66 gnd_1 net64 n25 w=0.36u l=0.26u nf=1 m=1
+xm10 net66 net47 gnd_1 net44 n25 w=0.36u l=0.26u nf=1 m=1
+xm8 net35 en gnd_1 net36 n25 w=0.36u l=0.26u nf=1 m=1
+xm7 d en net58 net30 n25 w=0.36u l=0.26u nf=1 m=1
+xm12 net67 net58 gnd_1 net56 n25 w=0.36u l=0.26u nf=1 m=1
+xm1 net47 net67 gnd_1 net6 n25 w=0.36u l=0.26u nf=1 m=1
+xm0 net58 out gnd_1 net2 n25 w=0.36u l=0.26u nf=1 m=1
+xm23 out net97 vcc net89 p25 w=0.36u l=0.26u nf=1 m=1
+xm21 net97 net87 vcc net83 p25 w=0.36u l=0.26u nf=1 m=1
+xm19 net87 net81 vcc net77 p25 w=0.36u l=0.26u nf=1 m=1
+xm17 net81 net75 vcc net71 p25 w=0.36u l=0.26u nf=1 m=1
+xm15 net75 net66 vcc net62 p25 w=0.36u l=0.26u nf=1 m=1
+xm11 net66 net47 vcc net42 p25 w=0.36u l=0.26u nf=1 m=1
+xm9 net35 en vcc net34 p25 w=0.36u l=0.26u nf=1 m=1
+xm6 d net35 net58 net26 p25 w=0.36u l=0.26u nf=1 m=1
+xm4 net47 net67 vcc net18 p25 w=0.36u l=0.26u nf=1 m=1
+xm3 net58 out vcc net14 p25 w=0.36u l=0.26u nf=1 m=1
+xm13 net67 net58 vcc net54 p25 w=0.36u l=0.26u nf=1 m=1
+c32 out gnd_1 c=500a
+c31 net97 gnd_1 c=500a
+c30 net87 gnd_1 c=500a
+c29 net81 gnd_1 c=500a
+c28 net75 gnd_1 c=500a
+c27 net66 gnd_1 c=500a
+c26 net47 gnd_1 c=500a
+c25 net67 gnd_1 c=500a
+c24 net58 gnd_1 c=500a
+.ends ckt
+
+********************************************************************************
+* Library          : ring_osc
+* Cell             : ckt_tb
+* View             : schematic
+* View Search List : hspice hspiceD schematic spice veriloga
+* View Stop List   : hspice hspiceD
+********************************************************************************
+v8 en gnd! dc=0 pwl ( 1n 0.0 1n 1.8 5n 1.8 5n 0 td=0 )
+v1 net6 gnd! dc=1.8
+c11 op gnd! c=5a
+xi0 gnd! en gnd! op net6 ckt
+
+
+
+
+
+
+
+
+.tran '0.01n' '10n' name=tran
+
+.option primesim_remove_probe_prefix = 0
+.probe v(*) i(*) level=1
+.probe tran v(en) v(op)
+
+.temp 25
+
+
+
+.option primesim_output=wdf
+
+
+.option parhier = LOCAL
+
+
+
+
+
+
+.end
